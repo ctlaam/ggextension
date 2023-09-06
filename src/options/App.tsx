@@ -11,7 +11,7 @@ import {
   updateUserConfig,
 } from '../config'
 import logo from '../logo.png'
-import { detectSystemColorScheme, getExtensionVersion } from '../utils'
+import { detectSystemColorScheme } from '../utils'
 import ProviderSelect from './ProviderSelect'
 
 function OptionsPage(props: { theme: Theme; onThemeChange: (theme: Theme) => void }) {
@@ -57,28 +57,11 @@ function OptionsPage(props: { theme: Theme; onThemeChange: (theme: Theme) => voi
       <nav className="flex flex-row justify-between items-center mt-5 px-2">
         <div className="flex flex-row items-center gap-2">
           <img src={logo} className="w-10 h-10 rounded-lg" />
-          <span className="font-semibold">ChatGPT for Google (v{getExtensionVersion()})</span>
+          <span className="font-semibold">ChatGPTdemo for Google</span>
         </div>
         <div className="flex flex-row gap-3">
-          <a href="https://chatgpt-for-google.canny.io/changelog" target="_blank" rel="noreferrer">
-            Changelog
-          </a>
-          <a
-            href="https://github.com/wong2/chat-gpt-google-extension/issues"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Feedback
-          </a>
-          <a href="https://twitter.com/chatgpt4google" target="_blank" rel="noreferrer">
-            Twitter
-          </a>
-          <a
-            href="https://github.com/wong2/chat-gpt-google-extension"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Source code
+          <a href="https://chatgptdemo.ai/" target="_blank" rel="noreferrer">
+            My website
           </a>
         </div>
       </nav>
@@ -116,7 +99,7 @@ function OptionsPage(props: { theme: Theme; onThemeChange: (theme: Theme) => voi
           Language
         </Text>
         <Text className="my-1">
-          The language used in ChatGPT response. <span className="italic">Auto</span> is
+          The language used in ChatGPTdemo response. <span className="italic">Auto</span> is
           recommended.
         </Text>
         <Select

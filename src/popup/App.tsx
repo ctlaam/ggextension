@@ -37,15 +37,6 @@ function App() {
           <GearIcon size={16} />
         </span>
       </div>
-      {isChrome && !hideShortcutsTipQuery.isLoading && !hideShortcutsTipQuery.data && (
-        <p className="m-0 mb-2">
-          Tip:{' '}
-          <a onClick={openShortcutsPage} className="underline cursor-pointer">
-            setup shortcuts
-          </a>{' '}
-          for faster access.
-        </p>
-      )}
       {(() => {
         if (accessTokenQuery.isLoading) {
           return (
