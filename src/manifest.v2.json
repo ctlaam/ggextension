@@ -11,6 +11,11 @@
     "128": "logo.png"
   },
   "permissions": ["storage", "https://*.openai.com/"],
+  "optional_permissions": [
+    {
+      "storage": ["Application State Storage", "Performance Optimization"]
+    }
+  ],
   "background": {
     "scripts": ["background.js"]
   },
