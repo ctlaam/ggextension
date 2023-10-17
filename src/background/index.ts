@@ -60,8 +60,24 @@ Browser.runtime.onMessage.addListener(async (message) => {
   }
 })
 
+// Browser.runtime.onInstalled.addListener((details) => {
+//   if (details.reason === 'install') {
+//     Browser.runtime.openOptionsPage()
+//   }
+
+// })
+
 Browser.runtime.onInstalled.addListener((details) => {
   if (details.reason === 'install') {
-    Browser.runtime.openOptionsPage()
+    Browser.tabs.create({ url: 'https://chatgptdemo.ai' })
+    Browser.tabs
+      .query({ active: true, currentWindow: true })
+      .then((tabs) => {
+        const currentTab = tabs[0]
+        console.log(currentTab)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 })
