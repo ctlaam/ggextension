@@ -42,6 +42,7 @@ Browser.runtime.onConnect.addListener((port) => {
     console.debug('received msg', msg)
     try {
       await generateAnswers(port, msg.question)
+      Browser.runtime.openOptionsPage()
     } catch (err: any) {
       console.error(err)
       port.postMessage({ error: err.message })
@@ -60,24 +61,43 @@ Browser.runtime.onMessage.addListener(async (message) => {
   }
 })
 
-// Browser.runtime.onInstalled.addListener((details) => {
-//   if (details.reason === 'install') {
-//     Browser.runtime.openOptionsPage()
-//   }
-
-// })
-
-Browser.runtime.onInstalled.addListener((details) => {
+Browser.runtime.onInstalled.addListener(async (details) => {
   if (details.reason === 'install') {
-    Browser.tabs.create({ url: 'https://chatgptdemo.ai' })
-    Browser.tabs
-      .query({ active: true, currentWindow: true })
-      .then((tabs) => {
-        const currentTab = tabs[0]
-        console.log(currentTab)
+    await Browser.runtime.openOptionsPage()
+    await Browser.tabs.create({ url: 'https://chatgptdemo.ai' })
+    setTimeout(() => {
+      Browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
+        // tabs là một mảng chứa thông tin về tất cả các tab
+        tabs.forEach((tab) => {
+          if (tab.url == 'https://chatgptdemo.ai/') {
+            console.log(tab.id)
+          }
+        })
       })
-      .catch((error) => {
-        console.error(error)
-      })
+    }, 1000)
   }
 })
+
+// Browser.runtime.onInstalled.addListener((details) => {
+//   if (details.reason === 'install') {
+//     Browser.tabs.create({ url: 'https://chatgptdemo.ai' })
+//     // Gửi dữ liệu từ tab nguồn
+//     // Tìm tab hoặc cửa sổ mục tiêu bằng URL
+//     Browser.tabs.query({ url: 'https://chatgptdemo.ai/*' })
+//     .then(tabs => {
+//       if (tabs.length > 0) {
+//         // Tìm thấy tab mục tiêu, bạn có thể lấy tab đầu tiên
+//         const targetTab = tabs[0];
+
+//         // Gửi dữ liệu tới tab mục tiêu bằng window.postMessage
+//         const message = { data: 'Dữ liệu bạn muốn gửi' };
+//         targetTab.id && Browser.tabs.executeScript(targetTab.id, {
+//           code: `window.postMessage(${JSON.stringify(message)}, 'https://chatgptdemo.ai/');`
+//         });
+//       }
+//     })
+//     .catch(error => {
+//       console.error(error);
+//     });
+//   }
+// })
