@@ -98,7 +98,7 @@ function ChatGPTQuery(props: Props) {
           <p className="italic mt-2">
             Enjoy this extension? Give us a 5-star rating at{' '}
             <a
-              href="https://chatgpt4google.com/chrome?utm_source=rating_tip"
+              href="https://chrome.google.com/webstore/detail/chatgpt-for-google/apoolaigpomccfpofkhcbfniogicjiai"
               target="_blank"
               rel="noreferrer"
             >
