@@ -96,26 +96,4 @@ function openPopup() {
   }
 }
 
-// Browser.runtime.onInstalled.addListener((details) => {
-//   if (details.reason === 'install') {
-//     Browser.tabs.create({ url: 'https://chatgptdemo.ai' })
-//     // Gửi dữ liệu từ tab nguồn
-//     // Tìm tab hoặc cửa sổ mục tiêu bằng URL
-//     Browser.tabs.query({ url: 'https://chatgptdemo.ai/*' })
-//     .then(tabs => {
-//       if (tabs.length > 0) {
-//         // Tìm thấy tab mục tiêu, bạn có thể lấy tab đầu tiên
-//         const targetTab = tabs[0];
-
-//         // Gửi dữ liệu tới tab mục tiêu bằng window.postMessage
-//         const message = { data: 'Dữ liệu bạn muốn gửi' };
-//         targetTab.id && Browser.tabs.executeScript(targetTab.id, {
-//           code: `window.postMessage(${JSON.stringify(message)}, 'https://chatgptdemo.ai/');`
-//         });
-//       }
-//     })
-//     .catch(error => {
-//       console.error(error);
-//     });
-//   }
-// })
+Browser.runtime.setUninstallURL('https://chatgptdemo.ai/feedback/')
